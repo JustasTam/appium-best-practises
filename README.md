@@ -65,8 +65,7 @@ appium-doctor --ios
 The main idea behind the Git branching strategy is to isolate your work into different types of branches. There will be different branch types like:
 
 - Feature
-- Hotfix
-- Maintenance
+- Refactor
 
 **Example : feature/ + “ticket number” (example: feature/QA-13)**
 
