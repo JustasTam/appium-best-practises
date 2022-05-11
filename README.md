@@ -23,7 +23,7 @@ For local runs:
   npm run iosLocal
 ```
 
-For browserstack runs:
+For soucelabs runs:
 
 ```sh
   npm run androidSouceLabs
