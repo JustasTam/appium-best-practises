@@ -1,18 +1,12 @@
 import config from './wdio.shared.sauce.conf';
 
-const buildName = `Android Native App Best Practices build-${new Date().getTime()}`;
+const buildName = `Android DoFasting: ${new Date().toLocaleString()}`;
+const slack = require('wdio-slack-service');
 
-// ===================================================================================
+
 // Capabilities
-// You can find more about constructing the capabilities for Android real devices
-// testing here https://saucelabs.com/platform/platform-configurator#/
-//
-// All test configuration options and W3C compliant options can be found here
-// https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options
-//
-// To read more about W3C and Sauce Labs please check
-// https://docs.saucelabs.com/mobile-apps/automated-testing/appium/real-devices/#using-the-w3c-webdriver-specification
-// ===================================================================================
+// For all capabilities please check
+// http://appium.io/docs/en/writing-running-appium/caps/#general-capabilities
 config.capabilities = [
   {
     // For the W3C capabilities, please check
@@ -30,8 +24,8 @@ config.capabilities = [
     'appium:automationName': 'UIAutomator2',
     // The name of the App in the Sauce Labs storage, for more info see
     // https://docs.saucelabs.com/mobile-apps/app-storage/
-    'appium:app': 'storage:filename=Android.MyDemoAppRN.apk',
-    'appium:appWaitActivity': 'com.saucelabs.mydemoapp.rn.MainActivity',
+    'appium:app': 'storage:filename=app-release.apk',
+    // 'appium:appWaitActivity': 'MainActivity',
     'appium:newCommandTimeout': 240,
     // This will adjust the Appium server in such a way that it will return all
     // non visible elements so we can assert against it.
@@ -52,9 +46,15 @@ config.capabilities = [
   },
 ];
 
-// =============================================
 // Max instances of the same device in the cloud
-// =============================================
 config.maxInstances = 10;
+
+config.services = [
+  [slack, {
+    webHookUrl: "https://hooks.slack.com/services/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", // Used to post notification to a particular channel
+    notifyOnlyOnFailure: false, // Send notification only on test failure
+    messageTitle: '-----------------------' + buildName + '-----------------------' // Name of the notification
+}]
+];
 
 exports.config = config;

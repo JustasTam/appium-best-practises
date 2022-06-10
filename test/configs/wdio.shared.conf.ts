@@ -3,23 +3,16 @@ export interface MobileConfig extends WebdriverIO.Config {
 }
 
 export const config: MobileConfig = {
-  // ==================
   // Specify Test Files
-  // ==================
-  //
-  specs: ['./test/specs/*.spec.ts'],
+  // specs: ['./test/specs/*.spec.ts'],
+  specs: ['./test/specs/healthcheck.spec.ts'],
+  // specs: ['./test/specs/registrationcheck.spec.ts'],
 
-  // ============
   // Capabilities
-  // ============
-  //
   capabilities: [],
 
-  // ===================
   // Test Configurations
-  // ===================
-  //
-  logLevel: 'silent',
+  logLevel: 'info',
   bail: 0,
   baseUrl: 'http://localhost',
   waitforTimeout: 15000,
@@ -52,3 +45,5 @@ export const config: MobileConfig = {
   // =====
   //
 };
+
+export default config;

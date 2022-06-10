@@ -58,4 +58,31 @@ const findElementBySwipe = async ({
   }
 };
 
-export {findElementBySwipe, swipe};
+const swipeTo = async (direction : string) => {
+  const displaySize = await driver.getWindowSize();
+  console.log('Display size' + displaySize);
+  const edgeBorder = 50;
+  
+  switch (direction) {
+    case 'UP':  // center of header
+      await swipe({x: displaySize.width/2, y: displaySize.height/2}, {x: displaySize.width/2, y: edgeBorder});
+      console.log('Scrolling up');
+      break;
+    case 'DOWN':  // center of footer
+      await swipe({x: displaySize.width/2, y: displaySize.height/2}, {x: displaySize.width/2, y: displaySize.height-edgeBorder});
+      console.log('Scrolling down');
+      break;  
+    case 'LEFT':  // center of left side
+      await swipe({x: displaySize.width/2, y: displaySize.height/2}, {x: edgeBorder, y: displaySize.height/2});
+      console.log('Scrolling left');
+      break; 
+    case 'RIGHT':  // center of right side
+      await swipe({x: displaySize.width/2, y: displaySize.height/2}, {x: displaySize.width-edgeBorder, y: edgeBorder});
+      console.log('Scrolling right');
+      break;  
+    default:
+      console.log(`No such direction`);
+  }
+};
+
+export {findElementBySwipe, swipe, swipeTo};
