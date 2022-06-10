@@ -22,9 +22,11 @@ const getTextOfElement = async (
 
   return visualText.trim();
 };
+
 const locatorStrategy = (selector: string): string => {
-  return driver.isIOS ? `id=${selector}` : `//*[@content-desc="${selector}"]`;
+  return driver.isIOS ? `id=${selector}` : `android=new UiSelector().resourceId("${selector}")`;
 };
+
 const restartApp = async (): Promise<void> => {
   if (!(driver.config as MobileConfig).firstAppStart) {
     await driver.reset();
